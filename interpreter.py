@@ -44,8 +44,9 @@ def parse_value(token):
 
 def execute_output(tokens, action_word):
     index = tokens.index(action_word)
-    value_token = tokens[index + 1]
-    value = parse_value(value_token)
+    value_tokens = tokens[index + 1:]
+    value_string = " ".join(value_tokens)
+    value = parse_value(value_string)
     print(value)
 
 

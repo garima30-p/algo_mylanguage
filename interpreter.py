@@ -13,18 +13,37 @@ def tokenize(line):
     current = ""
     in_quotes = False
 
+    # All punctuation symbols we want as separate tokens
+    punctuations = "=,+-<>:"
+
     for char in line:
         if char == '"':
             in_quotes = not in_quotes
             current += char
 
-        elif char == " " and not in_quotes:
+        elif in_quotes:
+            # Inside quotes, everything is literal
+            current += char
+
+        elif char in punctuations:
+            # Flush current token before punctuation
             if current:
                 tokens.append(current)
                 current = ""
+            # Add punctuation as its own token
+            tokens.append(char)
+
+        elif char == " ":
+            # Space ends a token (outside quotes)
+            if current:
+                tokens.append(current)
+                current = ""
+
         else:
+            # Normal character
             current += char
 
+    # Flush last token
     if current:
         tokens.append(current)
 

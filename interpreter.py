@@ -77,7 +77,7 @@ def run(program_text):
         if action == "OUTPUT":
             execute_output(tokens, action_word)
         else:
-            print(f"Unknown instruction: {line}")
+            print(f"code gadbad hai: {line}")
 
 # --- Entry Point ---
 if __name__ == "__main__":
